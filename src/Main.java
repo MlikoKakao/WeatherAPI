@@ -25,11 +25,11 @@ public class Main {
 
                 if (city.equalsIgnoreCase("No")) break;
 
-                JSONObject cityLocationData = getLocationData(city);
+                JSONObject cityLocationData = WeatherAPIData.getLocationData(city);
                 double latitude = (double) cityLocationData.get("latitude");
                 double longitude = (double) cityLocationData.get("longitude");
 
-                displayWeatherData(latitude, longitude);
+                WeatherAPIData.displayWeatherData(latitude, longitude);
             } while (!city.equalsIgnoreCase("No"));
         } catch (Exception e) {
             e.printStackTrace();
