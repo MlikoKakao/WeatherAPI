@@ -65,7 +65,7 @@ public class WeatherAPIData {
         try{
             String url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude +"&longitude="+
                     longitude+
-                    "&current=temperature_2m,relative_humidity_2m,weather_code";
+                    "&current=temperature_2m,relative_humidity_2m,rain,wind_speed_10m";
             HttpURLConnection apiConnection = fetchApiResponse(url);
             if(apiConnection.getResponseCode()!=200){
                 System.out.println("Error: Could not reach API");
@@ -86,8 +86,13 @@ public class WeatherAPIData {
             long relativeHumidity = (long) currentWeatherJson.get("relative_humidity_2m");
             System.out.println("Relative humidity: "+relativeHumidity);
 
-            long weatherCode = (long) currentWeatherJson.get("weather_code");
-            System.out.println("Weather code: "+weatherCode);
+            double windSpeed = (double) currentWeatherJson.get("wind_speed_10m");
+            System.out.println("Wind speed: "+windSpeed);
+
+            double rain = (double) currentWeatherJson.get("rain");
+            System.out.println("Rain: "+rain);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
